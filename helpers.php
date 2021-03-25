@@ -43,7 +43,7 @@ function rc_postsbycategory($atts)
 
     // Content classes
 
-    $container_clasees = "rc-container tie-col-md-8 container-wrapper has-extra-post";
+    $container_clasees = "rc-container tie-col-md-8 tie-col-xs-12 container-wrapper has-extra-post";
     $container_title_classes = "mag-box-title the-global-title";
     $image_classes = "attachment-jannah-image-large size-jannah-image-large";
 
