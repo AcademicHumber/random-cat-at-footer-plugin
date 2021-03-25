@@ -33,11 +33,19 @@ function rc_load_stylesheets()
 }
 add_action('wp_enqueue_scripts', 'rc_load_stylesheets');
 
+// Add related category
 
-/*add_action('init', function () {
+add_action('get_footer', 'rc_add_related_category');
 
-    $categories_data = rc_get_categories_data();
-    $random_category = $categories_data[array_rand($categories_data)];
-    $random_slug = $random_category['slug'];
-    echo do_shortcode("[my_categoryposts slug='$random_slug']");
-}, 12);*/
+function rc_add_related_category()
+{
+    if (is_category()) {
+        $term_id = get_queried_object()->term_id;
+        if (!empty(get_term_meta($term_id, 'related_category', true))) {
+            $term_slug = get_term_meta($term_id, 'related_category', true);
+        } else {
+            $term_slug = get_categories()[0]->slug;
+        }
+        echo do_shortcode("[my_categoryposts slug='$term_slug']");
+    }
+}

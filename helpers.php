@@ -40,29 +40,40 @@ function rc_postsbycategory($atts)
         'category_name' => $atts['slug'],
         'posts_per_page' => 3
     ));
+
+    // Content classes
+
+    $container_clasees = "rc-container tie-col-md-8 container-wrapper has-extra-post";
+    $container_title_classes = "mag-box-title the-global-title";
     $image_classes = "attachment-jannah-image-large size-jannah-image-large";
 
-    $string = "<div class='mag-box-container clearfix'>";
+    // Principal container
+
+    $string = "<div class='$container_clasees'>";
+
+    //Title
+
+    $string .= "<div class='$container_title_classes'><h3>" . __('Explora también la categoría de', 'related-cat') . " " . get_category_by_slug($atts['slug'])->name . "</h3></div>";
 
     // The Loop
     if ($the_query->have_posts()) {
-        $string .= '<ul class="rc-container post-items post-list-container">';
+        $string .= '<div class="rc-posts-list related-posts-list">';
         while ($the_query->have_posts()) {
             $the_query->the_post();
             $post_id = get_the_ID();
             if (has_post_thumbnail()) {
-                $string .= '<li class="tie-standard has-post-thumbnail">';
+                $string .= '<div class="tie-standard related-item">';
                 $string .= '<a href="' . get_the_permalink() . '" class="post-thumb">' . get_the_post_thumbnail($post_id, array('class' => $image_classes)) . '</a>';
-                $string .= '<div class="post-details"><h2 class="post-title"><a href="' . get_the_permalink() . '" >' . get_the_title() . '</a></h2></div>' . '</li>';
+                $string .= '<h3 class="post-title"><a href="' . get_the_permalink() . '" >' . get_the_title() . '</a></h3></div>';
             } else {
                 // if no featured image is found
-                $string .= '<li><a href="' . get_the_permalink() . '" rel="bookmark">' . get_the_title() . '</a></li>';
+                $string .= '<div class="tie-standard related-item"><a href="' . get_the_permalink() . '" rel="bookmark">' . get_the_title() . '</a></div>';
             }
         }
     } else {
-        $string = "No se encontraron posts";
+        $string = "<h4>Categoría sin posts, explora otras</h4>";
     }
-    $string .= '</ul><div>';
+    $string .= '</div></div>';
 
     return $string;
 

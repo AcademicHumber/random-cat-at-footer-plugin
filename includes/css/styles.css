@@ -1,7 +1,17 @@
 .rc-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  position: relative;
+  margin-top: 30px;
+}
+
+.rc-container .rc-posts-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
+}
+
+.rc-posts-list .post-thumb {
+  height: auto;
+  min-height: 250px;
 }
