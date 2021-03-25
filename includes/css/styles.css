@@ -13,5 +13,6 @@
 
 .rc-posts-list .post-thumb {
   height: auto;
-  min-height: 250px;
+  min-height: 160px;
+  margin-bottom: 10px;
 }

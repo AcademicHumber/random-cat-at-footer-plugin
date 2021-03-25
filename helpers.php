@@ -63,7 +63,7 @@ function rc_postsbycategory($atts)
             $post_id = get_the_ID();
             if (has_post_thumbnail()) {
                 $string .= '<div class="tie-standard related-item">';
-                $string .= '<a href="' . get_the_permalink() . '" class="post-thumb">' . get_the_post_thumbnail($post_id, array('class' => $image_classes)) . '</a>';
+                $string .= '<a href="' . get_the_permalink() . '" class="post-thumb">' . get_the_post_thumbnail($post_id, 'medium', array('class' => $image_classes)) . '</a>';
                 $string .= '<h3 class="post-title"><a href="' . get_the_permalink() . '" >' . get_the_title() . '</a></h3></div>';
             } else {
                 // if no featured image is found
